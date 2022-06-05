@@ -1,9 +1,12 @@
 import React from 'react';
+import Banner from './Banner';
+import TableOfCoins from './TableOfCoins';
 
 const Coins = () => {
     return (
-        <div>
-            <h1>This is coins</h1>
+        <div className=''>
+            <Banner />
+            <TableOfCoins />
         </div>
     );
 };
