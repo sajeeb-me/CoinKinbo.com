@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 const ListOfCoin = ({ coin }) => {
     // console.log(coin);
-    const { id, name, symbol, image, current_price, price_change_percentage_24h, total_volume, market_cap, market_cap_rank } = coin;
+    const { id, name, symbol, image, current_price, price_change_percentage_24h, total_volume, market_cap } = coin;
     return (
         <>
 
             <tr class="hover">
                 <td >
                     <Link to={`/details/${id}`}>
-                        <div className='flex items-center gap-4'>
+                        <div className='flex items-center gap-5'>
                             <img className='w-7' src={image} alt="" />
-                            <p className='uppercase font-semibold'>{symbol}</p>
+                            <p className='uppercase font-bold'>{symbol}</p>
                             <p>{name} </p>
                         </div>
                     </Link>

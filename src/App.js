@@ -15,7 +15,7 @@ function App() {
     AOS.init();
   })
   return (
-    <div>
+    <div className='body'>
       <Navbar>
         <Routes>
           {

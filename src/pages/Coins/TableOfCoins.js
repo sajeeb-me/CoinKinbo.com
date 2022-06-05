@@ -17,7 +17,7 @@ const TableOfCoins = () => {
     return (
         <div className='px-4 mb-10 -mt-10 relative z-20'>
             <div className='flex justify-between items-center bg-base-200 pt-5 pb-3 px-4 lg:px-10 rounded-t-lg'>
-                <p className='bg-primary px-2 py-3 rounded-md bg-opacity-20'>All Cryptos</p>
+                <p className='bg-primary px-2 py-3 rounded-md bg-opacity-20 text-sm'>All Cryptos</p>
                 <input
                     type="text"
                     placeholder="Search Coin Name"
@@ -36,7 +36,7 @@ const TableOfCoins = () => {
                                 <th >24h Change</th>
                                 <th >24h Volume</th>
                                 <th >Market Cap</th>
-                                <th >#</th>
+                                <th ></th>
                             </tr>
                         </thead>
                         <tbody>
