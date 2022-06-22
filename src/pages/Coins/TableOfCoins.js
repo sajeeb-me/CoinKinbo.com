@@ -1,17 +1,34 @@
-import React from 'react';
-import { useQuery } from 'react-query'
-import PageLoading from '../../components/PageLoading';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+// import PageLoading from '../../components/PageLoading';
 import ListOfCoin from './ListOfCoin';
 
 
 const TableOfCoins = () => {
+    const [coins, setCoins] = useState([])
+    // const [isLoading, setIsLoading] = useState(false)
+    const [searchedText, setSearchedText] = useState('');
 
-    const { data: coins, isLoading } = useQuery('allCoins', () => fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false').then(res => res.json()))
+    useEffect(() => {
+        // setIsLoading(true)
+        fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const match = data.filter(coin => (coin.name).toLowerCase().includes((searchedText).toLowerCase()) || (coin.symbol).toLowerCase().includes((searchedText).toLowerCase()))
+                setCoins(match)
+                // setIsLoading(false)
+            })
+    }, [searchedText])
 
     // console.log(coins);
 
-    if (isLoading) {
-        return <PageLoading />
+    // if (isLoading) {
+    //     return <PageLoading />
+    // }
+
+    const getInput = e => {
+        setSearchedText(e.target.value)
     }
 
     return (
@@ -20,7 +37,8 @@ const TableOfCoins = () => {
                 <p className='bg-primary px-2 py-3 rounded-md bg-opacity-20 text-sm'>All Cryptos</p>
                 <input
                     type="text"
-                    placeholder="Search Coin Name"
+                    onChange={getInput}
+                    placeholder="Search Coin"
                     class="input input-bordered lg:w-full max-w-xs"
                 />
             </div>
