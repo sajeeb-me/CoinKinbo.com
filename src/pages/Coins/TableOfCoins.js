@@ -26,16 +26,17 @@ const TableOfCoins = () => {
             </div>
             {
                 coins &&
-                <div class="overflow-x-auto">
+                <div >
                     <table class="table w-full">
                         {/* <!-- head --> */}
                         <thead>
                             <tr>
                                 <th >Name</th>
                                 <th >Price</th>
-                                <th >24h Change</th>
-                                <th >24h Volume</th>
-                                <th >Market Cap</th>
+                                <th className='table-cell lg:hidden'>24h Chg%</th>
+                                <th className='hidden lg:table-cell'>24h Change</th>
+                                <th className='hidden lg:table-cell text-center'>24h Volume</th>
+                                <th className='hidden lg:table-cell text-center'>Market Cap</th>
                                 <th ></th>
                             </tr>
                         </thead>

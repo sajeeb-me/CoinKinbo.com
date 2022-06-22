@@ -38,7 +38,7 @@ const Banner = () => {
                     data-swiper-parallax="-23%"
                 ></div>
                 <SwiperSlide className="px-12 py-20 lg:py-28 lg:px-20">
-                    <div className="text-3xl lg:text-6xl font-semibold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
+                    <div className="text-3xl lg:text-6xl font-bold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
                         Buy top rated Crypto from us!
                     </div>
                     <div className="text-xs lg:text-sm font-thin lg:tracking-widest" data-swiper-parallax="-300">
@@ -46,7 +46,7 @@ const Banner = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="px-12 py-20 lg:py-28 lg:px-20">
-                    <div className="text-3xl lg:text-6xl font-semibold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
+                    <div className="text-3xl lg:text-6xl font-bold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
                         The first ever instant service!
                     </div>
                     <div className="text-xs lg:text-sm font-thin lg:tracking-widest" data-swiper-parallax="-300">
@@ -54,7 +54,7 @@ const Banner = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="px-12 py-20 lg:py-28 lg:px-20">
-                    <div className="text-3xl lg:text-6xl font-semibold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
+                    <div className="text-3xl lg:text-6xl font-bold lg:w-1/2 mb-2 lg:mb-5" data-swiper-parallax="-300">
                         Best rate in your Country!
                     </div>
                     <div className="text-xs lg:text-sm font-thin lg:tracking-widest" data-swiper-parallax="-300">
