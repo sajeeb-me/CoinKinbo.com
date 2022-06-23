@@ -11,6 +11,10 @@ const Navbar = ({ children, cart }) => {
     const { pathname } = useLocation();
 
     // console.log(cart.length);
+    let quantity = 0;
+    cart.forEach(coin => {
+        quantity = quantity + coin.quantity;
+    })
 
     const navItems = [
         <li><NavLink className='rounded-md' to='/'>Home</NavLink></li>,
@@ -20,11 +24,11 @@ const Navbar = ({ children, cart }) => {
         <li className='relative'>
             {
                 user &&
-                <NavLink className='rounded-md' to='/cart'>
+                <NavLink className='rounded-md' to='/carts'>
                     <p className='text-3xl'><AiOutlineShopping /></p>
                     {
-                        cart?.length > 0 &&
-                        <p className='absolute top-1 right-1 bg-accent text-white px-2 py-1 text-xs rounded-full'>{cart?.length}</p>
+                        quantity > 0 &&
+                        <p className='absolute top-1 right-1 bg-accent bg-opacity-50 text-white px-2 py-1 text-xs rounded-full'>{quantity}</p>
                     }
                 </NavLink>
             }

@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import { addToLocalStorage } from './utilities/localStorageDB';
 
 export const CartContext = createContext('')
 
@@ -19,10 +20,21 @@ function App() {
     AOS.init();
   })
 
+  let newCart = [];
   const addToCart = (selectedCoin) => {
     // console.log(selectedCoin)
-    const newCart = [...cart, selectedCoin];
+    const exist = cart.find(coin => coin.id === selectedCoin.id);
+    if (exist) {
+      const rest = cart.filter(coin => coin.id !== selectedCoin.id);
+      exist.quantity = exist.quantity + 1;
+      newCart = [...rest, exist]
+    }
+    else {
+      selectedCoin.quantity = 1;
+      newCart = [...cart, selectedCoin];
+    }
     setCart(newCart);
+    addToLocalStorage(selectedCoin.id)
   }
 
 

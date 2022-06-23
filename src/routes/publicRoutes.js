@@ -1,3 +1,4 @@
+import Carts from "../pages/Carts/Carts";
 import Coins from "../pages/Coins/Coins";
 import DetailsOfCoin from "../pages/Coins/DetailsOfCoin";
 import Home from "../pages/Home/Home";
@@ -12,6 +13,7 @@ export const publicRoutes = [
     { path: 'details/:id', name: 'DetailsOfCoin', Component: DetailsOfCoin },
     { path: '/news', name: 'News', Component: News },
     { path: '/learn', name: 'Learn', Component: Learn },
+    { path: '/carts', name: 'Carts', Component: Carts },
     { path: '/login', name: 'Login', Component: Login },
     { path: '/register', name: 'Register', Component: Register },
 ]
