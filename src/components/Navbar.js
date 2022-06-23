@@ -3,18 +3,32 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../authentication/firebase.init';
 import { signOut } from 'firebase/auth';
+import { AiOutlineShopping } from 'react-icons/ai';
 
-const Navbar = ({ children }) => {
+const Navbar = ({ children, cart }) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const { pathname } = useLocation();
 
+    // console.log(cart.length);
 
     const navItems = [
         <li><NavLink className='rounded-md' to='/'>Home</NavLink></li>,
         <li><NavLink className='rounded-md' to='/coins'>Coins</NavLink></li>,
         <li><NavLink className='rounded-md' to='/news'>News</NavLink></li>,
         <li><NavLink className='rounded-md' to='/learn'>Learn</NavLink></li>,
+        <li className='relative'>
+            {
+                user &&
+                <NavLink className='rounded-md' to='/cart'>
+                    <p className='text-3xl'><AiOutlineShopping /></p>
+                    {
+                        cart?.length > 0 &&
+                        <p className='absolute top-1 right-1 bg-accent text-white px-2 py-1 text-xs rounded-full'>{cart?.length}</p>
+                    }
+                </NavLink>
+            }
+        </li>,
     ]
 
     return (
@@ -40,26 +54,28 @@ const Navbar = ({ children }) => {
                             <li>{
                                 user ?
                                     <div>
-                                        <div className="dropdown dropdown-end">
-                                            <label tabIndex="0" className="avatar online">
-                                                <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                    <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
-                                                    {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
-                                                </div>
-                                            </label>
-                                            <ul tabIndex="0" className="dropdown-content menu p-5 shadow bg-base-100 rounded-box w-40 lg:w-52">
-                                                <div className="avatar">
-                                                    <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <div>
+                                            <div className="dropdown dropdown-end">
+                                                <label tabIndex="0" className="avatar online">
+                                                    <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                                         <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
                                                         {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
                                                     </div>
-                                                </div>
-                                                <Link to='/dashboard/my-profile' className='text-center my-4 font-bold hover:text-primary-focus'>{user?.displayName}</Link>
-                                                <p className='text-center'>
-                                                    <button className="rounded btn btn-secondary btn-sm btn-outline text-base-100" onClick={() => signOut(auth)}>Sign out</button>
-                                                </p>
-                                            </ul>
-                                        </div >
+                                                </label>
+                                                <ul tabIndex="0" className="dropdown-content menu p-5 shadow bg-base-100 rounded-box w-40 lg:w-52">
+                                                    <div className="avatar">
+                                                        <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                            <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
+                                                            {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
+                                                        </div>
+                                                    </div>
+                                                    <Link to='/dashboard/my-profile' className='text-center my-4 font-bold hover:text-primary-focus'>{user?.displayName}</Link>
+                                                    <p className='text-center'>
+                                                        <button className="rounded btn btn-secondary btn-sm btn-outline text-base-100" onClick={() => signOut(auth)}>Sign out</button>
+                                                    </p>
+                                                </ul>
+                                            </div >
+                                        </div>
                                     </div>
 
                                     :

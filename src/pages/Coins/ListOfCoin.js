@@ -1,8 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { CartContext } from '../../App';
 
 const ListOfCoin = ({ coin }) => {
     const navigate = useNavigate()
+    const addToCart = useContext(CartContext)
     // console.log(coin);
     const { id, name, symbol, image, current_price, price_change_percentage_24h, total_volume, market_cap } = coin;
     return (
@@ -41,7 +44,7 @@ const ListOfCoin = ({ coin }) => {
                             Details
                         </Link>
                         <button
-                            onClick={() => navigate(`/news`)}
+                            onClick={() => addToCart(coin)}
                             className='btn btn-xs md:btn-sm btn-primary btn-outline'
                         >
                             Add <span className='ml-1 hidden md:inline'>to cart</span>

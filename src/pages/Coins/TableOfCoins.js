@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import PageLoading from '../../components/PageLoading';
 import ListOfCoin from './ListOfCoin';
 
@@ -14,7 +13,7 @@ const TableOfCoins = () => {
         fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 const match = data.filter(coin => (coin.name).toLowerCase().includes((searchedText).toLowerCase()) || (coin.symbol).toLowerCase().includes((searchedText).toLowerCase()))
                 setCoins(match)
                 // setIsLoading(false)
