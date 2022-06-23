@@ -1,8 +1,11 @@
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import { deleteCart } from '../../utilities/localStorageDB';
 
 const Receipt = ({ cart }) => {
+    const navigate = useNavigate();
+
     let quantity = 0;
     let totalPrice = 0;
     cart.forEach(coin => {
@@ -53,7 +56,9 @@ const Receipt = ({ cart }) => {
                 </div>
             </section>
             <section>
-                <button className='w-full border border-primary py-3 px-4 rounded-md font-semibold hover:bg-primary hover:text-white my-2 duration-300 ease-in'>
+                <button
+                    onClick={() => navigate('/payment')}
+                    className='w-full border border-primary py-3 px-4 rounded-md font-semibold hover:bg-primary hover:text-white my-2 duration-300 ease-in'>
                     <p>Proceed to Pay</p>
                 </button>
                 <button onClick={deleteCart} className='w-full border border-rose-500 py-3 px-4 rounded-md font-semibold flex justify-center items-center gap-2 hover:bg-rose-500 hover:text-white my-1 duration-300 ease-in'>

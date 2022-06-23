@@ -38,7 +38,7 @@ const Carts = ({ cart }) => {
                 <div>
                     <div className='m-5'>
                         <h1 className='text-3xl lg:text-5xl font-bold mb-6 opacity-20'>Receipt</h1>
-                        <div className='p-5 border border-transparent bg-base-200 rounded-xl h-[420px]'>
+                        <div className='p-5 bg-base-200 rounded-xl h-[420px]'>
                             {
                                 <Receipt cart={cart}></Receipt>
                             }

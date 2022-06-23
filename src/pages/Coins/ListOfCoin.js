@@ -43,7 +43,7 @@ const ListOfCoin = ({ coin }) => {
                         </Link>
                         <button
                             onClick={() => addToCart(coin)}
-                            className='btn btn-xs md:btn-sm btn-primary btn-outline'
+                            className='btn btn-xs md:btn-sm btn-primary btn-outline rounded'
                         >
                             Add <span className='ml-1 hidden md:inline'>to cart</span>
                         </button>

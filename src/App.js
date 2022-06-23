@@ -11,6 +11,8 @@ import { createContext } from 'react';
 import { addToLocalStorage } from './utilities/localStorageDB';
 import useCoins from './hooks/useCoins';
 import useCarts from './hooks/useCarts';
+import PrivateRoute from './authentication/PrivateRoute';
+import Payment from './pages/Payment/Payment';
 
 export const CartContext = createContext('')
 
@@ -52,6 +54,9 @@ function App() {
                 <Route key={index} path={path} element={<Component cart={cart} />} />
               )
             }
+            <Route element={<PrivateRoute />}>
+              <Route path='/payment' element={<Payment cart={cart} />} />
+            </Route>
           </Routes>
         </Navbar>
         <ToastContainer />
