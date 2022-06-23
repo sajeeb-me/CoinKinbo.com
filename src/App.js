@@ -7,14 +7,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import { createContext } from 'react';
 import { addToLocalStorage } from './utilities/localStorageDB';
+import useCoins from './hooks/useCoins';
+import useCarts from './hooks/useCarts';
 
 export const CartContext = createContext('')
 
 function App() {
-  const [cart, setCart] = useState([])
+  const [coins] = useCoins()
+  const [cart, setCart] = useCarts(coins)
 
   useEffect(() => {
     AOS.init();

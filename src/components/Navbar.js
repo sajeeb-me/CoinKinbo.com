@@ -23,7 +23,7 @@ const Navbar = ({ children, cart }) => {
         <li><NavLink className='rounded-md' to='/learn'>Learn</NavLink></li>,
         <li className='relative'>
             {
-                user &&
+                // user &&
                 <NavLink className='rounded-md' to='/carts'>
                     <p className='text-3xl'><AiOutlineShopping /></p>
                     {
