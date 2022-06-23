@@ -10,7 +10,7 @@ const getStoredItem = () => {
     return storageCoin;
 }
 
-const addToLocalStorage = (id) => {
+const addToLocalStorage = id => {
     let storageCoin = getStoredItem();
     let count = storageCoin[id];
     if (count) {
@@ -22,7 +22,29 @@ const addToLocalStorage = (id) => {
     localStorage.setItem('selected-coin', JSON.stringify(storageCoin))
 }
 
+const removeItem = id => {
+    let storageCoin = getStoredItem();
+    delete storageCoin[id];
+    localStorage.setItem('selected-coin', JSON.stringify(storageCoin))
+}
+
+const minusItem = id => {
+    let storageCoin = getStoredItem();
+    let count = storageCoin[id];
+    if (count) {
+        storageCoin[id] = count - 1;
+    }
+    localStorage.setItem('selected-coin', JSON.stringify(storageCoin))
+}
+
+const deleteCart = id => {
+    localStorage.removeItem('selected-coin')
+}
+
 export {
     getStoredItem,
-    addToLocalStorage
+    addToLocalStorage,
+    removeItem,
+    minusItem,
+    deleteCart
 }

@@ -15,8 +15,10 @@ import useCarts from './hooks/useCarts';
 export const CartContext = createContext('')
 
 function App() {
-  const [coins] = useCoins()
-  const [cart, setCart] = useCarts(coins)
+  const [listCoins] = useCoins()
+  const [cart, setCart] = useCarts(listCoins)
+  // console.log(listCoins);
+  // console.log(cart);
 
   useEffect(() => {
     AOS.init();
@@ -47,7 +49,7 @@ function App() {
           <Routes>
             {
               publicRoutes.map(({ path, Component }, index) =>
-                <Route key={index} path={path} element={<Component />} />
+                <Route key={index} path={path} element={<Component cart={cart} />} />
               )
             }
           </Routes>

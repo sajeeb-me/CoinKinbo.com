@@ -21,18 +21,7 @@ const Navbar = ({ children, cart }) => {
         <li><NavLink className='rounded-md' to='/coins'>Coins</NavLink></li>,
         <li><NavLink className='rounded-md' to='/news'>News</NavLink></li>,
         <li><NavLink className='rounded-md' to='/learn'>Learn</NavLink></li>,
-        <li className='relative'>
-            {
-                // user &&
-                <NavLink className='rounded-md' to='/carts'>
-                    <p className='text-3xl'><AiOutlineShopping /></p>
-                    {
-                        quantity > 0 &&
-                        <p className='absolute top-1 right-1 bg-accent bg-opacity-50 text-white px-2 py-1 text-xs rounded-full'>{quantity}</p>
-                    }
-                </NavLink>
-            }
-        </li>,
+
     ]
 
     return (
@@ -54,7 +43,19 @@ const Navbar = ({ children, cart }) => {
                         </ul>
                     </div>
                     <div>
-                        <ul class="menu menu-horizontal">
+                        <ul class="menu menu-horizontal items-center">
+                            <li className='relative mx-2'>
+                                {
+                                    // user &&
+                                    <NavLink className='rounded-full' to='/carts'>
+                                        <p className='text-2xl'><AiOutlineShopping /></p>
+                                        {
+                                            quantity > 0 &&
+                                            <p className='absolute top-1 right-1 bg-accent bg-opacity-50 text-white px-2 py-1 text-xs rounded-full'>{quantity}</p>
+                                        }
+                                    </NavLink>
+                                }
+                            </li>
                             <li>{
                                 user ?
                                     <div>
