@@ -7,7 +7,7 @@ import PageLoading from '../../components/PageLoading';
 import GoogleIcon from '../../assets/icons/google.png';
 import FacebookIcon from '../../assets/icons/facebook.png';
 import GithubIcon from '../../assets/icons/github.png';
-// import useToken from '../../hooks/useToken';
+import useToken from '../../hooks/useToken';
 
 const SocialMediaLogin = () => {
     const navigate = useNavigate();
@@ -18,14 +18,14 @@ const SocialMediaLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGithub(auth);
-    // const [token] = useToken(googleUser || facebookUser || gitUser);
+    const [token] = useToken(googleUser || facebookUser || gitUser);
 
     useEffect(() => {
-        if (googleUser || facebookUser || gitUser) {
+        if (token) {
             // console.log(user);
             navigate(from, { replace: true })
         }
-    }, [googleUser, facebookUser, gitUser, navigate, from])
+    }, [token, navigate, from])
     if (googleLoading || facebookLoading || gitLoading) {
         return <PageLoading />;
     }
