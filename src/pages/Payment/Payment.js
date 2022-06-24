@@ -16,8 +16,6 @@ const Payment = ({ cart }) => {
         return <PageLoading />
     }
 
-    console.log(cart);
-
     // console.log(cart);
     let quantity = 0;
     let totalPrice = 0;
@@ -32,7 +30,7 @@ const Payment = ({ cart }) => {
     const grandTotal = subTotal - discount;
     return (
         <section className='px-4 lg:px-20 my-10'>
-            <section className='grid grid-cols-2 gap-5'>
+            <section className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
                 {/* details information */}
                 <article className='p-5 bg-base-200 rounded-xl'>
                     <section>

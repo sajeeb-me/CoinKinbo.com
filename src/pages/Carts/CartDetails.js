@@ -1,11 +1,16 @@
 import React from 'react';
 import { addToLocalStorage, minusItem, removeItem } from '../../utilities/localStorageDB';
 import { TiDeleteOutline } from 'react-icons/ti';
-// import { removeItem, minusItem, addToLocalStorage } from '../../utilities/localStorageDb';
+import { toast } from 'react-toastify';
 
 const CartDetails = ({ coin }) => {
     const { id, image, name, current_price, quantity } = coin;
     const total = current_price * quantity;
+
+    const handleRemove = () => {
+        removeItem(id);
+        toast.warning(`Removed ${name} from your list.`)
+    }
 
     return (
         <>
@@ -38,7 +43,7 @@ const CartDetails = ({ coin }) => {
                 <td className='font-semibold'>${(total).toFixed(2)}</td>
                 <td>
                     <button
-                        onClick={() => removeItem(id)}
+                        onClick={handleRemove}
                         className='opacity-50 hover:opacity-100 hover:text-red-500 duration-300 ease-in'>
                         <TiDeleteOutline className='text-4xl' />
                     </button>

@@ -4,18 +4,25 @@ import { useState } from 'react';
 import { signOut } from 'firebase/auth';
 import auth from '../../authentication/firebase.init';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { deleteCart } from '../../utilities/localStorageDB';
 
-const CheckoutForm = ({ card, grandTotal, user }) => {
+const CheckoutForm = ({ cart, grandTotal, user }) => {
     const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('')
     const [paymentSuccess, setPaymentSuccess] = useState('')
     const [clientSecret, setClientSecret] = useState('');
+    const [processing, setProcessing] = useState(false)
     const [transID, setTransID] = useState('')
+    const date = new Date();
 
     const name = user?.displayName
     const email = user?.email
+    const purchasedCoins = cart;
+    // console.log(...purchasedCoins);
+
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
@@ -45,6 +52,7 @@ const CheckoutForm = ({ card, grandTotal, user }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setProcessing(true);
 
         if (!stripe || !elements) {
             return;
@@ -80,46 +88,45 @@ const CheckoutForm = ({ card, grandTotal, user }) => {
         );
         if (intentError) {
             setCardError(intentError)
+            setProcessing(false);
         }
         else {
             setCardError('')
-            console.log(paymentIntent);
+            // console.log(paymentIntent);
             setTransID(paymentIntent.id);
             setPaymentSuccess('Congratulations! Your payment is completed.')
 
             // payment information 
-            // const payment = {
-            //     orderId: _id,
-            //     transitionId: paymentIntent.id,
-            //     totalPrice,
-            //     productName,
-            //     quantity,
-            //     name,
-            //     email,
-            //     address,
-            //     phone
-            // }
+            const payment = {
+                coins: { ...purchasedCoins },
+                price: grandTotal,
+                name,
+                email,
+                date
+            }
 
-            // fetch(`https://blooming-caverns-13229.herokuapp.com/order/${_id}`, {
-            //     method: "PATCH",
-            //     headers: {
-            //         'content-type': 'application/json',
-            //         authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            //     },
-            //     body: JSON.stringify(payment)
-            // })
-            //     .then(res => {
-            //         if (res.status === 401 || res.status === 403) {
-            //             localStorage.removeItem('accessToken')
-            //             signOut(auth)
-            //             navigate('/login')
-            //         }
-            //         return res.json()
-            //     })
-            //     .then(data => {
-            //         setProcessing(false);
-            //         console.log(data);
-            //     })
+            fetch(`http://localhost:5000/order`, {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        localStorage.removeItem('accessToken')
+                        signOut(auth)
+                        navigate('/login')
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    setProcessing(false);
+                    deleteCart();
+                    toast.success('Payment successful!')
+                    console.log(data);
+                })
         }
 
     }
@@ -143,23 +150,28 @@ const CheckoutForm = ({ card, grandTotal, user }) => {
                         },
                     }}
                 />
-                <button
-                    type="submit"
-                    className='btn btn-primary btn-sm mt-8 rounded'
-                    disabled={!stripe || !clientSecret}
-                >
-                    Pay now
-                </button>
-            </form>
+                <div className='flex mt-8'>
+                    <button
+                        type="submit"
+                        className={`btn btn-primary btn-sm rounded ${processing && 'loading'}`}
+                        disabled={!stripe || !clientSecret || processing || paymentSuccess}
+                    >
+                        {paymentSuccess ? 'Paid' : 'Pay now'}
+                    </button>
+                    {
+                        paymentSuccess && <button onClick={() => navigate('/')} className='btn btn-link btn-sm'>Go to Home Page</button>
+                    }
+                </div>
+            </form >
             <article>
                 <p className='text-red-600 mt-2'>{cardError && `${cardError.type} : ${cardError.message}`}</p>
                 {paymentSuccess && <p className='text-secondary'>
                     {paymentSuccess}
                     <br />
-                    Transition id: <span className='font-semibold'>{transID}</span>
+                    <span className='text-sm'>We've received your payment. Transition id: <span className='font-bold'>{transID}.</span> Please check your <span className='font-bold'>order summary</span> for further information.</span>
                 </p>}
             </article>
-            <article className='absolute bottom-5 left-0 mx-5'>
+            <article className='xl:absolute bottom-5 left-0 xl:mx-5'>
                 <p>
                     <small>
                         <b>Note:</b> Please double check all the information before pay. Payment won't be refundable.

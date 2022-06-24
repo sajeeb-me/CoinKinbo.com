@@ -1,11 +1,12 @@
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { deleteCart } from '../../utilities/localStorageDB';
 
 const Receipt = ({ cart }) => {
     const navigate = useNavigate();
-
+    console.log(cart.length);
     let quantity = 0;
     let totalPrice = 0;
     cart.forEach(coin => {
@@ -17,6 +18,12 @@ const Receipt = ({ cart }) => {
     const subTotal = totalPrice + tax + serviceCharge;
     const discount = totalPrice * 0.03;
     const grandTotal = subTotal - discount;
+
+    const handleDelete = () => {
+        deleteCart();
+        toast.warning('Your all orders are deleted')
+    }
+
     return (
         <div>
             <section className='flex justify-between font-semibold'>
@@ -58,10 +65,16 @@ const Receipt = ({ cart }) => {
             <section>
                 <button
                     onClick={() => navigate('/payment')}
-                    className='w-full border border-primary py-3 px-4 rounded-md font-semibold hover:bg-primary hover:text-white my-2 duration-300 ease-in'>
+                    className='w-full btn btn-outline btn-primary my-2 duration-300 ease-in'
+                    disabled={cart.length < 1}
+                >
                     <p>Proceed to Pay</p>
                 </button>
-                <button onClick={deleteCart} className='w-full border border-rose-500 py-3 px-4 rounded-md font-semibold flex justify-center items-center gap-2 hover:bg-rose-500 hover:text-white my-1 duration-300 ease-in'>
+                <button
+                    onClick={handleDelete}
+                    className='w-full btn btn-warning flex justify-center items-center gap-2 my-1 duration-300 ease-in'
+                    disabled={cart.length < 1}
+                >
                     <AiOutlineDelete className="text-lg" />
                     <p>Delete Cart</p>
                 </button>
