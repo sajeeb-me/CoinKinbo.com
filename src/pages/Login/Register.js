@@ -26,7 +26,7 @@ const Register = () => {
     useEffect(() => {
         if (token) {
             // console.log(user);
-            navigate('/')
+            navigate('/coins')
         }
     }, [token, navigate])
     if (loading) {

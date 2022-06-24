@@ -13,6 +13,9 @@ import useCoins from './hooks/useCoins';
 import useCarts from './hooks/useCarts';
 import PrivateRoute from './authentication/PrivateRoute';
 import Payment from './pages/Payment/Payment';
+import Profile from './pages/Profile/Profile';
+import Orders from './pages/Orders/Orders';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 export const CartContext = createContext('')
 
@@ -56,6 +59,9 @@ function App() {
             }
             <Route element={<PrivateRoute />}>
               <Route path='/payment' element={<Payment cart={cart} />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/orders' element={<Orders />} />
+              <Route path='/dashboard' element={<Dashboard />} />
             </Route>
           </Routes>
         </Navbar>

@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../authentication/firebase.init';
 import { signOut } from 'firebase/auth';
-import { AiOutlineShopping, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineShopping } from 'react-icons/ai';
 import { TiUser } from 'react-icons/ti';
 import { FiLogOut } from 'react-icons/fi';
 import { GiTwoCoins } from 'react-icons/gi';
@@ -45,7 +45,7 @@ const Navbar = ({ children, cart }) => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </label>
                     </div>
-                    <Link to='/' className='flex-1 logo'>CoinKinbo</Link>
+                    <Link to='/coins' className='flex-1 logo'>CoinKinbo</Link>
                     <div class="flex-none hidden lg:block">
                         <ul class="menu menu-horizontal">
                             {/* <!-- Navbar menu content here --> */}
@@ -86,22 +86,28 @@ const Navbar = ({ children, cart }) => {
                                                             </div>
                                                         </div>
                                                         <div className='mt-4'>
-                                                            <Link to='/dashboard/my-profile' className='text-center font-bold hover:text-primary-focus'>
+                                                            <Link to='/profile' className='text-center font-bold hover:text-primary-focus'>
                                                                 {user?.displayName}
                                                             </Link>
                                                         </div>
                                                     </div>
                                                     <hr className='my-2' />
 
-                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                    <p
+                                                        onClick={() => navigate('/profile')}
+                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
                                                         <TiUser className='text-lg' />
                                                         My Profile
                                                     </p>
-                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                    <p
+                                                        onClick={() => navigate('/orders')}
+                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
                                                         <GiTwoCoins className='text-lg' />
                                                         My Orders
                                                     </p>
-                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                    <p
+                                                        onClick={() => navigate('/dashboard')}
+                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
                                                         <MdDashboardCustomize className='text-lg' />
                                                         Dashboard
                                                     </p>
