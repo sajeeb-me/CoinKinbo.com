@@ -3,7 +3,11 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../authentication/firebase.init';
 import { signOut } from 'firebase/auth';
-import { AiOutlineShopping } from 'react-icons/ai';
+import { AiOutlineShopping, AiOutlineUser } from 'react-icons/ai';
+import { TiUser } from 'react-icons/ti';
+import { FiLogOut } from 'react-icons/fi';
+import { GiTwoCoins } from 'react-icons/gi';
+import { MdDashboardCustomize } from 'react-icons/md';
 
 const Navbar = ({ children, cart }) => {
     const navigate = useNavigate();
@@ -73,16 +77,39 @@ const Navbar = ({ children, cart }) => {
                                                         {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
                                                     </div>
                                                 </label>
-                                                <ul tabIndex="0" className="dropdown-content menu p-5 shadow bg-base-100 rounded-box w-40 lg:w-52">
-                                                    <div className="avatar">
-                                                        <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                            <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
-                                                            {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
+                                                <ul tabIndex="0" className="dropdown-content menu shadow bg-base-100 rounded-box w-40 lg:w-52">
+                                                    <div className='px-5 pt-5 flex flex-col items-center'>
+                                                        <div className="avatar">
+                                                            <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                                <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
+                                                                {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
+                                                            </div>
+                                                        </div>
+                                                        <div className='mt-4'>
+                                                            <Link to='/dashboard/my-profile' className='text-center font-bold hover:text-primary-focus'>
+                                                                {user?.displayName}
+                                                            </Link>
                                                         </div>
                                                     </div>
-                                                    <Link to='/dashboard/my-profile' className='text-center my-4 font-bold hover:text-primary-focus'>{user?.displayName}</Link>
-                                                    <p className='text-center'>
-                                                        <button className="rounded btn btn-secondary btn-sm btn-outline text-base-100" onClick={handleSignOut}>Sign out</button>
+                                                    <hr className='my-2' />
+
+                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                        <TiUser className='text-lg' />
+                                                        My Profile
+                                                    </p>
+                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                        <GiTwoCoins className='text-lg' />
+                                                        My Orders
+                                                    </p>
+                                                    <p className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                        <MdDashboardCustomize className='text-lg' />
+                                                        Dashboard
+                                                    </p>
+                                                    <p
+                                                        onClick={handleSignOut}
+                                                        className='flex items-center gap-3 py-1 px-4 mb-4 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                        <FiLogOut className='text-lg' />
+                                                        Sign Out
                                                     </p>
                                                 </ul>
                                             </div >
@@ -106,7 +133,6 @@ const Navbar = ({ children, cart }) => {
                 <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
                     {/* <!-- Sidebar content here --> */}
                     {navItems}
-
                 </ul>
 
             </div>
