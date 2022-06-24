@@ -115,8 +115,8 @@ const CheckoutForm = ({ cart, grandTotal, user }) => {
             })
                 .then(res => {
                     if (res.status === 401 || res.status === 403) {
-                        localStorage.removeItem('accessToken')
                         signOut(auth)
+                        localStorage.removeItem('accessToken')
                         navigate('/login')
                     }
                     return res.json()

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import PageLoading from '../../components/PageLoading';
 import SocialMediaLogin from './SocialMediaLogin';
 import LoginImage from '../../assets/images/login.jpg'
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -20,14 +21,14 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile] = useUpdateProfile(auth);
     const [sendEmailVerification] = useSendEmailVerification(auth);
-    // const [token] = useToken(user)
+    const [token] = useToken(user)
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             // console.log(user);
             navigate('/')
         }
-    }, [user, navigate])
+    }, [token, navigate])
     if (loading) {
         return <PageLoading />;
     }

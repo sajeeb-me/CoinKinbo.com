@@ -6,7 +6,6 @@ import { deleteCart } from '../../utilities/localStorageDB';
 
 const Receipt = ({ cart }) => {
     const navigate = useNavigate();
-    console.log(cart.length);
     let quantity = 0;
     let totalPrice = 0;
     cart.forEach(coin => {

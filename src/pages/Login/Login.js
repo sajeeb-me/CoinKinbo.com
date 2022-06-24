@@ -7,6 +7,7 @@ import auth from '../../authentication/firebase.init';
 import PageLoading from '../../components/PageLoading';
 import SocialMediaLogin from './SocialMediaLogin';
 import LoginImage from '../../assets/images/login.jpg'
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -22,14 +23,14 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    // const [token] = useToken(user);
+    const [token] = useToken(user);
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             // console.log(user);
             navigate(from, { replace: true })
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
     if (loading) {
         return <PageLoading />;
     }

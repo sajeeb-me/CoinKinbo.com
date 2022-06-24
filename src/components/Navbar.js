@@ -24,6 +24,12 @@ const Navbar = ({ children, cart }) => {
 
     ]
 
+    const handleSignOut = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+        navigate('/coins');
+    }
+
     return (
         <div class="drawer">
             <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -76,7 +82,7 @@ const Navbar = ({ children, cart }) => {
                                                     </div>
                                                     <Link to='/dashboard/my-profile' className='text-center my-4 font-bold hover:text-primary-focus'>{user?.displayName}</Link>
                                                     <p className='text-center'>
-                                                        <button className="rounded btn btn-secondary btn-sm btn-outline text-base-100" onClick={() => signOut(auth)}>Sign out</button>
+                                                        <button className="rounded btn btn-secondary btn-sm btn-outline text-base-100" onClick={handleSignOut}>Sign out</button>
                                                     </p>
                                                 </ul>
                                             </div >
