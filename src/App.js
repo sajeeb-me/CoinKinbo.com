@@ -16,18 +16,23 @@ import Payment from './pages/Payment/Payment';
 import Profile from './pages/Profile/Profile';
 import Orders from './pages/Orders/Orders';
 import Dashboard from './pages/Dashboard/Dashboard';
+import PageLoading from './components/PageLoading';
 
 export const CartContext = createContext('')
 
 function App() {
-  const [listCoins] = useCoins()
+  const [listCoins, isLoading, refetch] = useCoins()
   const [cart, setCart] = useCarts(listCoins)
-  // console.log(listCoins);
+  console.log(listCoins);
   // console.log(cart);
 
   useEffect(() => {
     AOS.init();
   })
+
+  if (isLoading) {
+    return <PageLoading />
+  }
 
   let newCart = [];
   const addToCart = (selectedCoin) => {
@@ -44,6 +49,7 @@ function App() {
     }
     setCart(newCart);
     addToLocalStorage(selectedCoin.id)
+    refetch()
   }
 
 
@@ -54,7 +60,7 @@ function App() {
           <Routes>
             {
               publicRoutes.map(({ path, Component }, index) =>
-                <Route key={index} path={path} element={<Component cart={cart} />} />
+                <Route key={index} path={path} element={<Component cart={cart} refetch={refetch} />} />
               )
             }
             <Route element={<PrivateRoute />}>

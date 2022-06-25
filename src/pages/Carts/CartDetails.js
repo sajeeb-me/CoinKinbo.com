@@ -3,13 +3,24 @@ import { addToLocalStorage, minusItem, removeItem } from '../../utilities/localS
 import { TiDeleteOutline } from 'react-icons/ti';
 import { toast } from 'react-toastify';
 
-const CartDetails = ({ coin }) => {
+const CartDetails = ({ coin, refetch }) => {
     const { id, image, name, current_price, quantity } = coin;
     const total = current_price * quantity;
 
     const handleRemove = () => {
         removeItem(id);
-        toast.warning(`Removed ${name} from your list.`)
+        toast.warning(`Removed ${name} from your list.`);
+        refetch();
+    }
+
+    const handleMinusItem = () => {
+        minusItem(id);
+        refetch();
+    }
+
+    const handleAddItems = () => {
+        addToLocalStorage(id);
+        refetch();
     }
 
     return (
@@ -25,7 +36,7 @@ const CartDetails = ({ coin }) => {
                 <td>
                     <div className='flex'>
                         <button
-                            onClick={() => minusItem(id)}
+                            onClick={handleMinusItem}
                             className='text-4xl hover:text-primary'>
                             -
                         </button>
@@ -34,7 +45,7 @@ const CartDetails = ({ coin }) => {
                             {quantity}
                         </p>
                         <button
-                            onClick={() => addToLocalStorage(id)}
+                            onClick={handleAddItems}
                             className='text-3xl hover:text-primary'>
                             +
                         </button>

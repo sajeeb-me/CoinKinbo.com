@@ -5,7 +5,7 @@ import CartDetails from './CartDetails';
 import Receipt from './Receipt';
 import './Cart.css'
 
-const Carts = ({ cart }) => {
+const Carts = ({ cart, refetch }) => {
     return (
         <div className='px-4 lg:px-20 mt-5'>
             <div className='grid grid-cols-1 lg:grid-cols-3'>
@@ -29,7 +29,7 @@ const Carts = ({ cart }) => {
                             </thead>
                             <tbody>
                                 {
-                                    cart?.map(coin => <CartDetails key={coin.id} coin={coin}></CartDetails>)
+                                    cart?.map(coin => <CartDetails key={coin.id} coin={coin} refetch={refetch}></CartDetails>)
                                 }
                             </tbody>
                         </table>
@@ -40,7 +40,7 @@ const Carts = ({ cart }) => {
                         <h1 className='text-3xl lg:text-5xl font-bold mb-6 opacity-20'>Receipt</h1>
                         <div className='p-5 bg-base-200 rounded-xl h-[420px]'>
                             {
-                                <Receipt cart={cart}></Receipt>
+                                <Receipt cart={cart} refetch={refetch}></Receipt>
                             }
                         </div>
                     </div>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { deleteCart } from '../../utilities/localStorageDB';
 
-const Receipt = ({ cart }) => {
+const Receipt = ({ cart, refetch }) => {
     const navigate = useNavigate();
     let quantity = 0;
     let totalPrice = 0;
@@ -20,7 +20,8 @@ const Receipt = ({ cart }) => {
 
     const handleDelete = () => {
         deleteCart();
-        toast.warning('Your all orders are deleted')
+        toast.warning('Your all orders are deleted');
+        refetch();
     }
 
     return (

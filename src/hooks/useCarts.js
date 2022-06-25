@@ -8,7 +8,7 @@ const useCarts = (listCoins) => {
         const storedItems = getStoredItem();
         const addNewCart = [];
         for (const id in storedItems) {
-            const addedCoin = listCoins.find(coin => coin.id === id);
+            const addedCoin = listCoins?.find(coin => coin.id === id);
             if (addedCoin) {
                 addedCoin.quantity = storedItems[id];
                 addNewCart.push(addedCoin)
