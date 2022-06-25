@@ -64,7 +64,7 @@ function App() {
               )
             }
             <Route element={<PrivateRoute />}>
-              <Route path='/payment' element={<Payment cart={cart} />} />
+              <Route path='/payment' element={<Payment cart={cart} refetch={refetch} />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/orders' element={<Orders />} />
               <Route path='/dashboard' element={<Dashboard />} />

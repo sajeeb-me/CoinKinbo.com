@@ -38,13 +38,13 @@ const TableOfCoins = () => {
                     type="text"
                     onChange={getInput}
                     placeholder="Search Coin"
-                    class="input input-bordered lg:w-full max-w-xs"
+                    className="input input-bordered lg:w-full max-w-xs"
                 />
             </div>
             {
                 coins &&
                 <div >
-                    <table class="table w-full">
+                    <table className="table w-full">
                         {/* <!-- head --> */}
                         <thead>
                             <tr>

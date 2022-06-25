@@ -10,7 +10,7 @@ const ListOfCoin = ({ coin }) => {
     const { id, name, symbol, image, current_price, price_change_percentage_24h, total_volume, market_cap } = coin;
     return (
         <>
-            <tr class="hover hover:cursor-pointer">
+            <tr className="hover hover:cursor-pointer">
                 <td onClick={() => navigate(`/details/${id}`)}>
                     <div className='flex items-center gap-5'>
                         <img className='w-7 hidden md:block' src={image} alt="" />

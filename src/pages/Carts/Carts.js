@@ -16,7 +16,7 @@ const Carts = ({ cart, refetch }) => {
                         <BsArrowRight className="text-lg" />
                     </Link>
                     <div className='container p-1 lg:p-5 border rounded-xl h-[420px] overflow-y-auto'>
-                        <table class="table w-full">
+                        <table className="table w-full">
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>

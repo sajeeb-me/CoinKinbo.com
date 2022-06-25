@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BsArrowDownShort, BsArrowUpShort } from 'react-icons/bs';
+import { CartContext } from '../../App';
 
 const DetailsOfCoin = () => {
     const { id } = useParams()
     const [coin, setCoin] = useState({})
+    const addToCart = useContext(CartContext)
     useEffect(() => {
         fetch(`https://api.coingecko.com/api/v3/coins/${id}`)
             .then(res => res.json())
@@ -30,7 +32,7 @@ const DetailsOfCoin = () => {
                     </div>
                     <div className='flex items-end gap-3'>
                         <button
-                            // onClick={() => addToCart(coin)} 
+                            onClick={() => addToCart(coin)}
                             className='btn btn-primary btn-outline my-3 duration-300 ease-in'>Add to cart</button>
                         <Link to='/coins' className='font-semibold pb-3 opacity-90 hover:underline hover:opacity-900 duration-200 ease-in'><small>Back to Coin list</small></Link>
                     </div>

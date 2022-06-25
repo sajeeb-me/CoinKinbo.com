@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { deleteCart } from '../../utilities/localStorageDB';
 
-const CheckoutForm = ({ cart, grandTotal, user }) => {
+const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
     const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
@@ -92,7 +92,7 @@ const CheckoutForm = ({ cart, grandTotal, user }) => {
         }
         else {
             setCardError('')
-            console.log(paymentIntent);
+            // console.log(paymentIntent);
             setTransID(paymentIntent.id);
             setPaymentSuccess('Congratulations! Your payment is completed.')
 
@@ -125,8 +125,9 @@ const CheckoutForm = ({ cart, grandTotal, user }) => {
                 .then(data => {
                     setProcessing(false);
                     deleteCart();
+                    refetch();
                     toast.success('Payment successful!')
-                    console.log(data);
+                    // console.log(data);
                 })
         }
 

@@ -25,14 +25,14 @@ const CartDetails = ({ coin, refetch }) => {
 
     return (
         <>
-            <tr class="hover">
+            <tr className="hover">
                 <td className='text-left'>
                     <div className='flex items-center gap-3'>
                         <img className='h-6 w-6' src={image} alt="" />
                         {name}
                     </div>
                 </td>
-                <td>${(current_price).toFixed(2)}</td>
+                <td>${(current_price)?.toFixed(2)}</td>
                 <td>
                     <div className='flex'>
                         <button

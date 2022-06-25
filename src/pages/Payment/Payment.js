@@ -8,7 +8,7 @@ import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51L0e9UKXLIT8vsGRYvQEWCxHR0302RSzSjpHMvYk5uIRqJXzhEfAfXsDGSM45kzJjOXyk79u1gZmsM6KSXcULlrd00vAYSRIIu');
 
-const Payment = ({ cart }) => {
+const Payment = ({ cart, refetch }) => {
     const [user, isLoading] = useAuthState(auth);
     const username = user?.displayName
 
@@ -81,7 +81,7 @@ const Payment = ({ cart }) => {
                         <p>You are purchasing the world revolutionary coins. Please provide the card information for make payment.</p>
                     </article>
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm cart={cart} grandTotal={grandTotal} user={user} />
+                        <CheckoutForm cart={cart} grandTotal={grandTotal} user={user} refetch={refetch} />
                     </Elements>
                 </article>
             </section>

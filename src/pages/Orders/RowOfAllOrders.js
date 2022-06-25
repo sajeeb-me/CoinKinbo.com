@@ -11,15 +11,15 @@ const RowOfAllOrders = ({ order, index }) => {
             <tr className='hover'>
                 <td>{index + 1}</td>
                 <td className='relative'>
-                    <div class="dropdown dropdown-hover">
-                        <label tabIndex="0" class="">
+                    <div className="dropdown dropdown-hover">
+                        <label tabIndex="0" className="">
                             {
                                 coins.slice(0, 1).map(coin => <span>{coin.name}... </span>)
                             }
                         </label>
                         <section
                             tabIndex="0"
-                            class="dropdown-content menu p-4 shadow bg-base-200 rounded-box ">
+                            className="dropdown-content menu p-4 shadow bg-base-200 rounded-box ">
                             <article>
                                 <section className='flex justify-between font-bold'>
                                     <p>Coin</p>
