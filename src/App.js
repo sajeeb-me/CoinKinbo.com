@@ -18,6 +18,9 @@ import Orders from './pages/Orders/Orders';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PageLoading from './components/PageLoading';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import AllUsers from './pages/AdminDashboard/AllUsers';
+import AllOrders from './pages/AdminDashboard/AllOrders';
+import WelcomeAdmin from './pages/AdminDashboard/WelcomeAdmin';
 
 export const CartContext = createContext('')
 
@@ -69,7 +72,11 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='/orders' element={<Orders />} />
               <Route path='/dashboard' element={<Dashboard />} />
-              <Route path='/admin-dashboard' element={<AdminDashboard />} />
+              <Route path='/admin-dashboard' element={<AdminDashboard />} >
+                <Route index element={<WelcomeAdmin />} />
+                <Route path='admin-and-user' element={<AllUsers />} />
+                <Route path='manage-orders' element={<AllOrders />} />
+              </Route>
             </Route>
           </Routes>
         </Navbar>

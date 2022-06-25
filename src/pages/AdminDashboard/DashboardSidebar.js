@@ -1,15 +1,14 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
-import auth from '../../authentication/firebase.init';
+// import auth from '../../authentication/firebase.init';
 // import PageLoading from '../../components/PageLoading';
 // import useAdmin from '../../hooks/useAdmin';
 import { FaList } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
-import { BiMessageSquareAdd } from 'react-icons/bi';
 
 const DashboardSidebar = ({ children }) => {
-    const [user] = useAuthState(auth);
+    // const [user] = useAuthState(auth);
     // const [admin, isAdminLoading] = useAdmin(user);
 
     // if (isAdminLoading) {
@@ -39,12 +38,6 @@ const DashboardSidebar = ({ children }) => {
                         <NavLink to='/admin-dashboard/manage-orders'>
                             <FaList className='text-lg' />
                             Manage all orders
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/admin-dashboard/add-part'>
-                            <BiMessageSquareAdd className='text-2xl' />
-                            Add a Coin
                         </NavLink>
                     </li>
                 </ul>

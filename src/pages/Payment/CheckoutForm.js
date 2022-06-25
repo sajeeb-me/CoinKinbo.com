@@ -21,6 +21,8 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
     const name = user?.displayName
     const email = user?.email
     const purchasedCoins = cart;
+    const price = parseInt(grandTotal);
+    // console.log(price)
     // console.log(...purchasedCoins);
 
 
@@ -31,7 +33,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
                 "content-type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({ price: parseInt(grandTotal) }),
+            body: JSON.stringify({ price: price }),
         })
             .then(res => {
                 // console.log(res)
@@ -48,7 +50,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
                     setClientSecret(data.clientSecret)
                 }
             });
-    }, [navigate, grandTotal]);
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
