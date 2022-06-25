@@ -3,7 +3,6 @@ import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../authentication/firebase.init';
-import PageLoading from '../../components/PageLoading';
 import GoogleIcon from '../../assets/icons/google.png';
 import FacebookIcon from '../../assets/icons/facebook.png';
 import GithubIcon from '../../assets/icons/github.png';
@@ -26,11 +25,9 @@ const SocialMediaLogin = () => {
             navigate(from, { replace: true })
         }
     }, [token, navigate, from])
-    if (googleLoading || facebookLoading || gitLoading) {
-        return <PageLoading />;
-    }
+
     if (googleError || facebookError || gitError) {
-        console.log(googleError.code || facebookError.code || gitError.code);
+        // console.log(googleError.code || facebookError.code || gitError.code);
         switch (googleError.code || facebookError.code || gitError.code) {
             case "auth/popup-closed-by-user":
                 toast.error("You closed the popup without login", {
@@ -49,18 +46,30 @@ const SocialMediaLogin = () => {
             <div className="divider">OR</div>
             <div className='grid grid-cols-3'>
                 <div className='border-r border-primary'>
-                    <button onClick={() => signInWithGoogle()} className='btn btn-ghost'>
-                        <img src={GoogleIcon} alt="" className='h-6' />
+                    <button
+                        onClick={() => signInWithGoogle()}
+                        className={`btn btn-ghost ${googleLoading && 'loading'}`}
+                        disabled={googleLoading}
+                    >
+                        {googleLoading || <img src={GoogleIcon} alt="" className='h-6' />}
                     </button>
                 </div>
                 <div className='border-r border-primary'>
-                    <button onClick={() => signInWithFacebook()} className='btn btn-ghost'>
-                        <img src={FacebookIcon} alt="" className='h-6' />
+                    <button
+                        onClick={() => signInWithFacebook()}
+                        className={`btn btn-ghost ${facebookLoading && 'loading'}`}
+                        disabled={facebookLoading}
+                    >
+                        {facebookLoading || <img src={FacebookIcon} alt="" className='h-6' />}
                     </button>
                 </div>
                 <div>
-                    <button onClick={() => signInWithGithub()} className='btn btn-ghost'>
-                        <img src={GithubIcon} alt="" className='h-6' />
+                    <button
+                        onClick={() => signInWithGithub()}
+                        className={`btn btn-ghost ${gitLoading && 'loading'}`}
+                        disabled={gitLoading}
+                    >
+                        {gitLoading || <img src={GithubIcon} alt="" className='h-6' />}
                     </button>
                 </div>
             </div>
