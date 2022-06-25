@@ -1,20 +1,9 @@
 import React from 'react';
-// import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
-// import auth from '../../authentication/firebase.init';
-// import PageLoading from '../../components/PageLoading';
-// import useAdmin from '../../hooks/useAdmin';
 import { FaList } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 
 const DashboardSidebar = ({ children }) => {
-    // const [user] = useAuthState(auth);
-    // const [admin, isAdminLoading] = useAdmin(user);
-
-    // if (isAdminLoading) {
-    //     return <PageLoading />
-    // }
-
     return (
         <div className="drawer drawer-mobile ">
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />

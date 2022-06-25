@@ -8,11 +8,19 @@ import { TiUser } from 'react-icons/ti';
 import { FiLogOut } from 'react-icons/fi';
 import { GiTwoCoins } from 'react-icons/gi';
 import { MdDashboardCustomize } from 'react-icons/md';
+import PageLoading from './PageLoading';
+import useAdmin from '../hooks/useAdmin';
+
 
 const Navbar = ({ children, cart }) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const { pathname } = useLocation();
+    const [admin, isAdminLoading] = useAdmin(user);
+
+    if (isAdminLoading) {
+        return <PageLoading />
+    }
 
     // console.log(cart.length);
     let quantity = 0;
@@ -76,7 +84,7 @@ const Navbar = ({ children, cart }) => {
                                                         {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
                                                     </div>
                                                 </label>
-                                                <ul tabIndex="0" className="dropdown-content menu shadow bg-base-100 rounded-box w-40 lg:w-52">
+                                                <ul tabIndex="0" className="dropdown-content menu shadow bg-base-100 rounded-box w-44 lg:w-56">
                                                     <div className='px-5 pt-5 flex flex-col items-center'>
                                                         <div className="avatar">
                                                             <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -91,31 +99,36 @@ const Navbar = ({ children, cart }) => {
                                                         </div>
                                                     </div>
                                                     <hr className='my-2' />
-
-                                                    <p
-                                                        onClick={() => navigate('/profile')}
-                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
-                                                        <TiUser className='text-lg' />
-                                                        My Profile
-                                                    </p>
-                                                    <p
-                                                        onClick={() => navigate('/orders')}
-                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
-                                                        <GiTwoCoins className='text-lg' />
-                                                        My Orders
-                                                    </p>
-                                                    <p
-                                                        onClick={() => navigate('/dashboard')}
-                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
-                                                        <MdDashboardCustomize className='text-lg' />
-                                                        Dashboard
-                                                    </p>
-                                                    <p
-                                                        onClick={() => navigate('/admin-dashboard')}
-                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
-                                                        <MdDashboardCustomize className='text-lg' />
-                                                        Admin Dashboard
-                                                    </p>
+                                                    {
+                                                        !admin ?
+                                                            <>
+                                                                <p
+                                                                    onClick={() => navigate('/profile')}
+                                                                    className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                                    <TiUser className='text-lg' />
+                                                                    My Profile
+                                                                </p>
+                                                                <p
+                                                                    onClick={() => navigate('/orders')}
+                                                                    className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                                    <GiTwoCoins className='text-lg' />
+                                                                    My Orders
+                                                                </p>
+                                                                <p
+                                                                    onClick={() => navigate('/dashboard')}
+                                                                    className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                                    <MdDashboardCustomize className='text-lg' />
+                                                                    Dashboard
+                                                                </p>
+                                                            </>
+                                                            :
+                                                            <p
+                                                                onClick={() => navigate('/admin-dashboard')}
+                                                                className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                                <MdDashboardCustomize className='text-lg' />
+                                                                Admin Dashboard
+                                                            </p>
+                                                    }
                                                     <p
                                                         onClick={handleSignOut}
                                                         className='flex items-center gap-3 py-1 px-4 mb-4 font-medium hover:bg-base-200 active:bg-base-300'>
