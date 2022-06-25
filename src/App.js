@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile';
 import Orders from './pages/Orders/Orders';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PageLoading from './components/PageLoading';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 
 export const CartContext = createContext('')
 
@@ -68,6 +69,7 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='/orders' element={<Orders />} />
               <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/admin-dashboard' element={<AdminDashboard />} />
             </Route>
           </Routes>
         </Navbar>

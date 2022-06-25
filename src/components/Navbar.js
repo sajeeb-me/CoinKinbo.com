@@ -111,6 +111,12 @@ const Navbar = ({ children, cart }) => {
                                                         Dashboard
                                                     </p>
                                                     <p
+                                                        onClick={() => navigate('/admin-dashboard')}
+                                                        className='flex items-center gap-3 py-1 px-4 mb-1 font-medium hover:bg-base-200 active:bg-base-300'>
+                                                        <MdDashboardCustomize className='text-lg' />
+                                                        Admin Dashboard
+                                                    </p>
+                                                    <p
                                                         onClick={handleSignOut}
                                                         className='flex items-center gap-3 py-1 px-4 mb-4 font-medium hover:bg-base-200 active:bg-base-300'>
                                                         <FiLogOut className='text-lg' />
@@ -125,6 +131,14 @@ const Navbar = ({ children, cart }) => {
                                     <button className="rounded btn btn-primary btn-outline mr-5 lg:mr-0" onClick={() => navigate('/login')}>Login</button>
 
                             }</li >
+                            {
+                                pathname.includes('/admin-dashboard') &&
+                                <li>
+                                    <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost lg:hidden">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                                    </label>
+                                </li>
+                            }
                         </ul>
 
 
