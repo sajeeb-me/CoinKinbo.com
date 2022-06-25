@@ -29,15 +29,15 @@ const DashboardSidebar = ({ children }) => {
                 <ul className="bg-base-300 menu p-4 overflow-y-auto w-56">
                     {/* <!-- Sidebar content here --> */}
                     <li>
-                        <NavLink to='/admin-dashboard/admin-and-user'>
-                            <FiUsers className='text-lg' />
-                            Admins &amp; Users
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink to='/admin-dashboard/manage-orders'>
                             <FaList className='text-lg' />
                             Manage all orders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/admin-dashboard/admin-and-user'>
+                            <FiUsers className='text-lg' />
+                            Admins &amp; Users
                         </NavLink>
                     </li>
                 </ul>
