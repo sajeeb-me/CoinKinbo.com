@@ -92,19 +92,20 @@ const CheckoutForm = ({ cart, grandTotal, user }) => {
         }
         else {
             setCardError('')
-            // console.log(paymentIntent);
+            console.log(paymentIntent);
             setTransID(paymentIntent.id);
             setPaymentSuccess('Congratulations! Your payment is completed.')
 
             // payment information 
             const payment = {
-                coins: { ...purchasedCoins },
+                coins: [...purchasedCoins],
                 price: grandTotal,
                 name,
                 email,
-                date
+                date,
+                transitionId: paymentIntent.id,
             }
-
+            // console.log(payment)
             fetch(`http://localhost:5000/order`, {
                 method: "POST",
                 headers: {
@@ -159,7 +160,7 @@ const CheckoutForm = ({ cart, grandTotal, user }) => {
                         {paymentSuccess ? 'Paid' : 'Pay now'}
                     </button>
                     {
-                        paymentSuccess && <button onClick={() => navigate('/')} className='btn btn-link btn-sm'>Go to Home Page</button>
+                        paymentSuccess && <button onClick={() => navigate('/orders')} className='btn btn-link btn-sm'>Go to My Orders</button>
                     }
                 </div>
             </form >

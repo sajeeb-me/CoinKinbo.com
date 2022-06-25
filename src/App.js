@@ -23,7 +23,7 @@ export const CartContext = createContext('')
 function App() {
   const [listCoins, isLoading, refetch] = useCoins()
   const [cart, setCart] = useCarts(listCoins)
-  console.log(listCoins);
+  // console.log(listCoins);
   // console.log(cart);
 
   useEffect(() => {
