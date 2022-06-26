@@ -9,7 +9,7 @@ import RowToGetAllOrders from './RowToGetAllOrders';
 const AllOrders = () => {
     const navigate = useNavigate();
 
-    const { data: orders, isLoading } = useQuery('order', () => fetch(`http://localhost:5000/all-order`, {
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/all-order`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -48,7 +48,7 @@ const AllOrders = () => {
                         </thead>
                         <tbody>
                             {
-                                orders?.map((order, index) => <RowToGetAllOrders key={order._id} order={order} index={index} />)
+                                orders?.map((order, index) => <RowToGetAllOrders key={order._id} order={order} index={index} refetch={refetch} />)
                             }
                         </tbody>
                     </table>

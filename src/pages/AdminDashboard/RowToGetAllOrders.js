@@ -1,10 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
-const RowToGetAllOrders = ({ order, index }) => {
-
-    // console.log(order);
-
+const RowToGetAllOrders = ({ order, index, refetch }) => {
     const { coins, email, date, price, transitionId } = order;
+    const [deliverLoading, setDeliverLoading] = useState(false)
+    const deliveryDate = new Date()
+
+
+    const handleDeliver = id => {
+        setDeliverLoading(true)
+        const orderStatus = {
+            emailNotification: email,
+            delivered: true,
+            deliveryDate
+        }
+        // console.log(orderStatus);
+        fetch(`http://localhost:5000/all-order/${id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(orderStatus)
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    setDeliverLoading(false)
+                    toast.error('Failed to ship order')
+                }
+                return res.json()
+            })
+            .then(data => {
+                // console.log(data);
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    setDeliverLoading(false)
+                    toast.success('Order delivered successfully')
+                }
+            })
+    }
 
     return (
         <>
@@ -39,13 +73,18 @@ const RowToGetAllOrders = ({ order, index }) => {
                 <td>${(price).toFixed(2)}</td>
                 <td>
                     {
-                        !order.paid ?
-                            <div className='flex items-center gap-2'>
+                        !order.delivered ?
+                            <div className='flex items-center justify-center gap-2'>
                                 <p className='text-sm'>Pending</p>
-                                <button className='btn btn-sm btn-primary btn-outline'>Deliver</button>
+                                <button
+                                    onClick={() => handleDeliver(order._id)}
+                                    className={`btn btn-sm btn-primary ${deliverLoading && 'loading'}`} disabled={deliverLoading}
+                                >
+                                    {deliverLoading ? 'Delivering' : 'Deliver'}
+                                </button>
                             </div>
                             :
-                            <p className='text-green-600 font-semibold text-sm'>Shipped</p>
+                            <p className='text-secondary-focus font-medium text-center'>Delivered</p>
                     }
                 </td>
                 <td className='hidden lg:table-cell text-sm'>
