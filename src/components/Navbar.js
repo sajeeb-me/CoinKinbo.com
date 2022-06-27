@@ -10,6 +10,7 @@ import { GiTwoCoins } from 'react-icons/gi';
 import { MdDashboardCustomize } from 'react-icons/md';
 import PageLoading from './PageLoading';
 import useAdmin from '../hooks/useAdmin';
+import useProfile from '../hooks/useProfile';
 
 
 const Navbar = ({ children, cart }) => {
@@ -17,6 +18,7 @@ const Navbar = ({ children, cart }) => {
     const [user] = useAuthState(auth);
     const { pathname } = useLocation();
     const [admin, isAdminLoading] = useAdmin(user);
+    const [usersProfile] = useProfile(user)
 
     if (isAdminLoading) {
         return <PageLoading />
@@ -80,16 +82,14 @@ const Navbar = ({ children, cart }) => {
                                             <div className="dropdown dropdown-end">
                                                 <label tabIndex="0" className="avatar online">
                                                     <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                        <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
-                                                        {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
+                                                        <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
                                                     </div>
                                                 </label>
                                                 <ul tabIndex="0" className="dropdown-content menu shadow bg-base-100 rounded-box w-44 lg:w-56">
                                                     <div className='px-5 pt-5 flex flex-col items-center'>
                                                         <div className="avatar">
                                                             <div className="w-16 mx-auto rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                                <img src={'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
-                                                                {/* <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' /> */}
+                                                                <img src={usersProfile?.image ? usersProfile?.image : 'https://i.ibb.co/5sWZQdg/default-images.jpg'} alt='' />
                                                             </div>
                                                         </div>
                                                         <div className='mt-4'>
