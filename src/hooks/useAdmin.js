@@ -19,7 +19,7 @@ const useAdmin = user => {
                     setIsAdminLoading(false);
                 })
         }
-    }, [user])
+    }, [user, user?.email])
     return [admin, isAdminLoading];
 };
 
