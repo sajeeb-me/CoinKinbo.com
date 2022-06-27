@@ -5,7 +5,24 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
     const { coins, email, date, price, transitionId } = order;
     const [deliverLoading, setDeliverLoading] = useState(false)
     const deliveryDate = new Date()
+    // console.log(coins?.map(coin => coin.name))
+    // console.log(coins?.map(coin => coin.quantity))
+    const purchasedCoins = coins?.map(coin => coin.name)
+    const purchasedQuantity = coins?.map(coin => coin.quantity)
+    const purchasedPrice = coins?.map(coin => coin.current_price)
 
+
+    const createWallet = purchasedCoins.map((coin, index) => {
+        return {
+            name: coin,
+            quantity: purchasedQuantity[index],
+            coinPrice: purchasedPrice[index],
+            totalPrice: purchasedQuantity[index] * purchasedPrice[index],
+        }
+    });
+
+    // const createWallet = { ...purchasedCoin }
+    // console.log(wallet);
 
     const handleDeliver = id => {
         setDeliverLoading(true)
@@ -19,7 +36,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(orderStatus)
         })
@@ -33,9 +50,40 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
             .then(data => {
                 // console.log(data);
                 if (data.modifiedCount > 0) {
-                    refetch();
-                    setDeliverLoading(false)
-                    toast.success('Order delivered successfully')
+                    const wallet = {
+                        email,
+                        coins: createWallet
+                    }
+                    fetch(`http://localhost:5000/update-userWallet`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify({ wallet })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // console.log(data)
+                            refetch();
+                            setDeliverLoading(false)
+                            toast.success('Order delivered successfully')
+                        })
+                    // fetch(`http://localhost:5000/update-userWallet/${email}`, {
+                    //     method: 'PUT',
+                    //     headers: {
+                    //         'content-type': 'application/json',
+                    //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    //     },
+                    //     body: JSON.stringify({ wallet })
+                    // })
+                    //     .then(res => res.json())
+                    //     .then(data => {
+                    //         console.log(data)
+                    //         refetch();
+                    //         setDeliverLoading(false)
+                    //         toast.success('Order delivered successfully')
+                    //     })
                 }
             })
     }
@@ -73,7 +121,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                 <td>${(price).toFixed(2)}</td>
                 <td>
                     {
-                        !order.delivered ?
+                        !order.paymentInfo ?
                             <div className='flex items-center justify-center gap-2'>
                                 <p className='text-sm'>Pending</p>
                                 <button

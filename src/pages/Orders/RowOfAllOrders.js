@@ -44,7 +44,7 @@ const RowOfAllOrders = ({ order, index }) => {
                 <td className='hidden lg:table-cell'>{date}</td>
                 <td>
                     {
-                        !order.paid ?
+                        !order.paymentInfo ?
                             <p className='text-sm'>Pending</p>
                             :
                             <p className='text-secondary-focus font-medium text-sm'>Delivered</p>
