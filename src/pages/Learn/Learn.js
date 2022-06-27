@@ -1,10 +1,11 @@
 import React from 'react';
 import Footer from '../../components/Footer';
+import LearnBody from './LearnBody';
 
 const Learn = () => {
     return (
         <section>
-            <h1>This is Learn</h1>
+            <LearnBody />
             <Footer />
         </section>
     );
