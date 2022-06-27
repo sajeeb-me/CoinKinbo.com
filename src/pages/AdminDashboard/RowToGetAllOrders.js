@@ -123,7 +123,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                     {
                         !order.paymentInfo ?
                             <div className='flex items-center justify-center gap-2'>
-                                <p className='text-sm'>Pending</p>
+                                <p className='italic opacity-70'>Pending</p>
                                 <button
                                     onClick={() => handleDeliver(order._id)}
                                     className={`btn btn-sm btn-primary ${deliverLoading && 'loading'}`} disabled={deliverLoading}
@@ -132,7 +132,12 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                                 </button>
                             </div>
                             :
-                            <p className='text-secondary-focus font-medium text-center'>Delivered</p>
+                            <p
+                                className='text-secondary font-bold text-center'
+                                title={`Delivered at ${date}`}
+                            >
+                                Delivered
+                            </p>
                     }
                 </td>
                 <td className='hidden lg:table-cell text-sm'>

@@ -45,9 +45,14 @@ const RowOfAllOrders = ({ order, index }) => {
                 <td>
                     {
                         !order.paymentInfo ?
-                            <p className='text-sm'>Pending</p>
+                            <p className='italic opacity-70'>Pending</p>
                             :
-                            <p className='text-secondary-focus font-medium text-sm'>Delivered</p>
+                            <p
+                                className='text-secondary font-bold'
+                                title={`Delivered at ${date}`}
+                            >
+                                Delivered
+                            </p>
                     }
                 </td>
                 <td className='hidden lg:table-cell'>{transitionId}</td>
