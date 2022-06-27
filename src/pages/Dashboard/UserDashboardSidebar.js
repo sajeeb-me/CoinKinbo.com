@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaList } from 'react-icons/fa';
-import { FiUsers } from 'react-icons/fi';
+import { MdHistory } from 'react-icons/md';
+import { AiOutlinePieChart } from 'react-icons/ai';
 
 const UserDashboardSidebar = ({ children }) => {
     return (
@@ -19,19 +19,19 @@ const UserDashboardSidebar = ({ children }) => {
                     {/* <!-- Sidebar content here --> */}
                     <li>
                         <NavLink
-                            to='/'
+                            to='/dashboard/purchased-history'
                             className='text-sm'
                         >
-                            <FaList />
+                            <MdHistory className='text-base' />
                             Purchased History
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            to='/'
+                            to='/dashboard/my-portfolio'
                             className='text-sm'
                         >
-                            <FiUsers />
+                            <AiOutlinePieChart className='text-base' />
                             My Portfolio
                         </NavLink>
                     </li>
