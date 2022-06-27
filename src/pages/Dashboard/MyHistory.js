@@ -34,9 +34,9 @@ const MyHistory = () => {
 
     return (
         <section className='bg-white p-4 lg:p-8 h-screen w-full'>
-            <h1 className='text-xl font-semibold mb-5'>My Orders</h1>
+            <h1 className='text-xl font-semibold mb-5'>Purchased History</h1>
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto lg:overflow-x-visible">
                     <table className="table w-full">
                         {/* <!-- head --> */}
                         <thead>
