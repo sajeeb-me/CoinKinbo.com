@@ -1,10 +1,12 @@
 import React from 'react';
+import Footer from '../../components/Footer';
 
 const Learn = () => {
     return (
-        <div>
+        <section>
             <h1>This is Learn</h1>
-        </div>
+            <Footer />
+        </section>
     );
 };
 
