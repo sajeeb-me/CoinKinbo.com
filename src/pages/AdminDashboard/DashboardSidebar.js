@@ -6,7 +6,7 @@ import { FiUsers } from 'react-icons/fi';
 const DashboardSidebar = ({ children }) => {
     return (
         <div className="drawer drawer-mobile ">
-            <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+            <input id="adminDashboard-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 {/* <!-- Page content here --> */}
                 {children}
@@ -14,7 +14,7 @@ const DashboardSidebar = ({ children }) => {
 
             </div>
             <div className="drawer-side">
-                <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                <label htmlFor="adminDashboard-drawer" className="drawer-overlay"></label>
                 <ul className="bg-base-300 menu p-4 overflow-y-auto w-56">
                     {/* <!-- Sidebar content here --> */}
                     <li>
