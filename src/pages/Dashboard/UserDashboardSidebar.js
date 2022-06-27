@@ -19,7 +19,7 @@ const UserDashboardSidebar = ({ children }) => {
                     {/* <!-- Sidebar content here --> */}
                     <li>
                         <NavLink
-                            to='/dashboard/purchased-history'
+                            to='/dashboard/my-history'
                             className='text-sm'
                         >
                             <MdHistory className='text-base' />

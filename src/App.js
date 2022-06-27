@@ -22,8 +22,8 @@ import AllUsers from './pages/AdminDashboard/AllUsers';
 import AllOrders from './pages/AdminDashboard/AllOrders';
 import WelcomeAdmin from './pages/AdminDashboard/WelcomeAdmin';
 import WelcomeToDashboard from './pages/Dashboard/WelcomeToDashboard';
-import PurchasedHistory from './pages/Dashboard/PurchasedHistory';
 import MyPortfolio from './pages/Dashboard/MyPortfolio';
+import MyHistory from './pages/Dashboard/MyHistory';
 
 export const CartContext = createContext('')
 
@@ -76,7 +76,7 @@ function App() {
               <Route path='/orders' element={<Orders />} />
               <Route path='/dashboard' element={<Dashboard />} >
                 <Route index element={<WelcomeToDashboard />} />
-                <Route path='purchased-history' element={<PurchasedHistory />} />
+                <Route path='my-history' element={<MyHistory />} />
                 <Route path='my-portfolio' element={<MyPortfolio />} />
               </Route>
               <Route path='/admin-dashboard' element={<AdminDashboard />} >

@@ -5,8 +5,6 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
     const { coins, email, date, price, transitionId } = order;
     const [deliverLoading, setDeliverLoading] = useState(false)
     const deliveryDate = new Date()
-    // console.log(coins?.map(coin => coin.name))
-    // console.log(coins?.map(coin => coin.quantity))
     const purchasedCoins = coins?.map(coin => coin.name)
     const purchasedQuantity = coins?.map(coin => coin.quantity)
     const purchasedPrice = coins?.map(coin => coin.current_price)
@@ -52,7 +50,11 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                 if (data.modifiedCount > 0) {
                     const wallet = {
                         email,
-                        coins: createWallet
+                        coins: createWallet,
+                        totalAmount: price,
+                        deliveryDate,
+                        transitionId,
+                        orderDate: date
                     }
                     fetch(`http://localhost:5000/update-userWallet`, {
                         method: 'POST',
