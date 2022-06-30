@@ -5,6 +5,7 @@ import Video from '../../assets/video/background.mp4';
 const Home = () => {
     const navigate = useNavigate();
 
+
     return (
         <div className='text-white'>
             <video autoPlay loop muted

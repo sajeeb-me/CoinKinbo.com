@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import News from "../pages/News/News";
 
+
 export const publicRoutes = [
     { path: '/', name: 'Home', Component: Home },
     { path: '/coins', name: 'Coins', Component: Coins },
