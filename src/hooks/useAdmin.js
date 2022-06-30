@@ -8,7 +8,7 @@ const useAdmin = user => {
         const email = user?.email;
         if (email) {
             setIsAdminLoading(true);
-            fetch(`http://localhost:5000/user/admin/${email}`, {
+            fetch(`https://limitless-fortress-72775.herokuapp.com/user/admin/${email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

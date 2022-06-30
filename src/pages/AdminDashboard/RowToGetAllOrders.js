@@ -30,7 +30,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
             deliveryDate
         }
         // console.log(orderStatus);
-        fetch(`http://localhost:5000/all-order/${id}`, {
+        fetch(`https://limitless-fortress-72775.herokuapp.com/all-order/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',
@@ -56,7 +56,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                         transitionId,
                         orderDate: date
                     }
-                    fetch(`http://localhost:5000/update-userWallet`, {
+                    fetch(`https://limitless-fortress-72775.herokuapp.com/update-userWallet`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -71,7 +71,7 @@ const RowToGetAllOrders = ({ order, index, refetch }) => {
                             setDeliverLoading(false)
                             toast.success('Order delivered successfully')
                         })
-                    // fetch(`http://localhost:5000/update-userWallet/${email}`, {
+                    // fetch(`https://limitless-fortress-72775.herokuapp.com/update-userWallet/${email}`, {
                     //     method: 'PUT',
                     //     headers: {
                     //         'content-type': 'application/json',

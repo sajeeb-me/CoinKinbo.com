@@ -54,7 +54,7 @@ const Profile = () => {
         // send to database
         const email = user.email
         if (email) {
-            fetch(`http://localhost:5000/profile/${email}`, {
+            fetch(`https://limitless-fortress-72775.herokuapp.com/profile/${email}`, {
                 method: "PATCH",
                 headers: {
                     'content-type': 'application/json',

@@ -27,7 +27,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://limitless-fortress-72775.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -108,7 +108,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
                 transitionId: paymentIntent.id,
             }
             // console.log(payment)
-            fetch(`http://localhost:5000/order`, {
+            fetch(`https://limitless-fortress-72775.herokuapp.com/order`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json',

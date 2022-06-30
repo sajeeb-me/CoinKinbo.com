@@ -10,7 +10,7 @@ const useProfile = (user) => {
         const email = user?.email;
         if (email) {
             setIsUserLoading(true)
-            fetch(`http://localhost:5000/profile?email=${email}`, {
+            fetch(`https://limitless-fortress-72775.herokuapp.com/profile?email=${email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

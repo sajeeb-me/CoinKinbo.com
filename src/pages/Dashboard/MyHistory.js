@@ -11,7 +11,7 @@ const MyHistory = () => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
 
-    const { data: myHistory, isLoading } = useQuery('myHistory', () => fetch(`http://localhost:5000/my-wallet?email=${user?.email}`, {
+    const { data: myHistory, isLoading } = useQuery('myHistory', () => fetch(`https://limitless-fortress-72775.herokuapp.com/my-wallet?email=${user?.email}`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
