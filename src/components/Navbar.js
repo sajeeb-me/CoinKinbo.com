@@ -8,7 +8,6 @@ import { TiUser } from 'react-icons/ti';
 import { FiLogOut } from 'react-icons/fi';
 import { GiTwoCoins } from 'react-icons/gi';
 import { MdDashboardCustomize } from 'react-icons/md';
-import PageLoading from './PageLoading';
 import useAdmin from '../hooks/useAdmin';
 import useProfile from '../hooks/useProfile';
 
@@ -17,12 +16,9 @@ const Navbar = ({ children, cart }) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const { pathname } = useLocation();
-    const [admin, isAdminLoading] = useAdmin(user);
+    const [admin] = useAdmin(user);
     const [usersProfile] = useProfile(user)
 
-    if (isAdminLoading) {
-        return <PageLoading />
-    }
 
     // console.log(cart.length);
     let quantity = 0;
@@ -64,8 +60,9 @@ const Navbar = ({ children, cart }) => {
                     </div>
                     <div>
                         <ul className="menu menu-horizontal items-center">
-                            <li className='relative mx-2'>
-                                {
+                            {
+                                !admin &&
+                                <li className='relative mx-2'>
                                     <NavLink className='rounded-full' to='/carts'>
                                         <p className='text-2xl'><AiOutlineShopping /></p>
                                         {
@@ -73,10 +70,11 @@ const Navbar = ({ children, cart }) => {
                                             <p className='absolute top-1 right-1 bg-accent bg-opacity-50 text-white px-2 py-1 text-xs rounded-full'>{quantity}</p>
                                         }
                                     </NavLink>
-                                }
-                            </li>
+                                </li>
+                            }
                             <li>{
                                 user ?
+                                    // user avatar
                                     <div>
                                         <div>
                                             <div className="dropdown dropdown-end">
