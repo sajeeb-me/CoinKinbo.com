@@ -5,7 +5,9 @@ import Home from "../pages/Home/Home";
 import Learn from "../pages/Learn/Learn";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
+import ResetPassword from "../pages/Login/ResetPassword";
 import News from "../pages/News/News";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 
 export const publicRoutes = [
@@ -17,4 +19,6 @@ export const publicRoutes = [
     { path: '/carts', name: 'Carts', Component: Carts },
     { path: '/login', name: 'Login', Component: Login },
     { path: '/register', name: 'Register', Component: Register },
+    { path: '/resetpassword', name: "ResetPassword", Component: ResetPassword },
+    { path: '*', name: "NotFoundPage", Component: NotFoundPage },
 ]

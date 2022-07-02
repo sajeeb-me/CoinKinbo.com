@@ -93,7 +93,7 @@ const Login = () => {
                         </div>
 
                         {/* pass  */}
-                        <div className="form-control w-full">
+                        <div className="form-control w-full mb-3">
                             <input
                                 type="password"
                                 placeholder='Password'
@@ -107,12 +107,18 @@ const Login = () => {
                                         message: 'Must be 6 character or longer'
                                     }
                                 })}
-                                className={`border-b w-full outline-none mb-3 p-1 ${errors.name && 'border-b-error'}`}
+                                className={`border-b w-full outline-none p-1 ${errors.name && 'border-b-error'}`}
                             />
                             <label className="label">
-                                {errors.password?.type === 'required' && <span className="label-text-alt -mt-3 text-error">{errors.password.message}</span>}
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                             </label>
+                            <p
+                                onClick={() => navigate('/resetpassword')}
+                                className='text-left font-medium cursor-pointer opacity-80 hover:opacity-100'
+                            >
+                                Forget password?
+                            </p>
                         </div>
 
                         {/* submit button  */}
