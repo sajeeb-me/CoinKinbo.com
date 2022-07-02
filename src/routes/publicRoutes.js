@@ -13,7 +13,7 @@ import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 export const publicRoutes = [
     { path: '/', name: 'Home', Component: Home },
     { path: '/coins', name: 'Coins', Component: Coins },
-    { path: 'details/:id', name: 'DetailsOfCoin', Component: DetailsOfCoin },
+    { path: '/details/:id', name: 'DetailsOfCoin', Component: DetailsOfCoin },
     { path: '/news', name: 'News', Component: News },
     { path: '/learn', name: 'Learn', Component: Learn },
     { path: '/carts', name: 'Carts', Component: Carts },
