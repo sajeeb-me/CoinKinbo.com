@@ -10,7 +10,7 @@ const useProfile = (user) => {
         const email = user?.email;
         if (email) {
             setIsUserLoading(true)
-            fetch(`https://limitless-fortress-72775.herokuapp.com/profile?email=${email}`, {
+            fetch(`https://coin-kinbo-server.vercel.app/profile?email=${email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

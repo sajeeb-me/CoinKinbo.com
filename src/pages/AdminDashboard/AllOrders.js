@@ -9,7 +9,7 @@ import RowToGetAllOrders from './RowToGetAllOrders';
 const AllOrders = () => {
     const navigate = useNavigate();
 
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`https://limitless-fortress-72775.herokuapp.com/all-order`, {
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`https://coin-kinbo-server.vercel.app/all-order`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

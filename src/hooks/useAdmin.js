@@ -6,7 +6,7 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://limitless-fortress-72775.herokuapp.com/user/admin/${email}`, {
+            fetch(`https://coin-kinbo-server.vercel.app/user/admin/${email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

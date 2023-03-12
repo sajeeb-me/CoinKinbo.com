@@ -11,7 +11,7 @@ const Orders = () => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
 
-    const { data: orders, isLoading } = useQuery('order', () => fetch(`https://limitless-fortress-72775.herokuapp.com/order?email=${user?.email}`, {
+    const { data: orders, isLoading } = useQuery('order', () => fetch(`https://coin-kinbo-server.vercel.app/order?email=${user?.email}`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

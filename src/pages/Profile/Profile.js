@@ -54,7 +54,7 @@ const Profile = () => {
         // send to database
         const email = user.email
         if (email) {
-            fetch(`https://limitless-fortress-72775.herokuapp.com/profile/${email}`, {
+            fetch(`https://coin-kinbo-server.vercel.app/profile/${email}`, {
                 method: "PATCH",
                 headers: {
                     'content-type': 'application/json',

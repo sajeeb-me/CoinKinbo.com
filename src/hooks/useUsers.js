@@ -5,7 +5,7 @@ import auth from '../authentication/firebase.init';
 
 const useUsers = () => {
     const navigate = useNavigate();
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://limitless-fortress-72775.herokuapp.com/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://coin-kinbo-server.vercel.app/user', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -27,7 +27,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
 
 
     useEffect(() => {
-        fetch("https://limitless-fortress-72775.herokuapp.com/create-payment-intent", {
+        fetch("https://coin-kinbo-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -108,7 +108,7 @@ const CheckoutForm = ({ cart, grandTotal, user, refetch }) => {
                 transitionId: paymentIntent.id,
             }
             // console.log(payment)
-            fetch(`https://limitless-fortress-72775.herokuapp.com/order`, {
+            fetch(`https://coin-kinbo-server.vercel.app/order`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json',
